@@ -18,7 +18,7 @@ export const authOptions: NextAuthOptions = {
                     const user = await UserModel.findOne({email: credentials?.email})
 
                     if(!user){
-                        return null
+                        throw new Error("Please sign up first")
                     }
 
                     const isPasswordCorrect = await bcrypt.compare(credentials?.password || "", user?.password)
@@ -26,9 +26,10 @@ export const authOptions: NextAuthOptions = {
                     if(isPasswordCorrect){
                         return user
                     }else{
-                        return null
+                        throw new Error("Incorrect Credential")
                     }
                 } catch (error: any) {
+                    console.log(error)
                     throw new Error(error)
                 }
             },
@@ -54,7 +55,7 @@ export const authOptions: NextAuthOptions = {
         
     },
     pages: {
-        signIn: "/login"
+        signIn: "/login",
     },
     session: {
         strategy: "jwt"

@@ -6,6 +6,7 @@ import { LockKeyhole, Mail, Phone } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import axios from "axios"
 import toast from 'react-hot-toast'
+import { error } from 'console'
 
 function SignupForm() {
     const router = useRouter()
@@ -13,7 +14,7 @@ function SignupForm() {
     const [password, setPassword] = useState('')
     const [phoneNo, setPhoneNo] = useState('')
     const [isLoading, setIsLoading] = useState(false)
-    const [error, setError] = useState("")
+    const [errors, setErrors] = useState<Array<string>>([])
 
     const handleSubmit = async (e : React.FormEvent<HTMLFormElement>) =>{
         e.preventDefault()
@@ -21,7 +22,8 @@ function SignupForm() {
 
         if (!email || password || phoneNo){
             setIsLoading(false)
-            setError("All fields are required")
+            setErrors(["All fields are required",])
+            return
         }
 
         try {
@@ -35,7 +37,7 @@ function SignupForm() {
             router.refresh()
         } catch (error: any) {
             console.log(error)
-            setError(error)
+            setErrors(error.response.data.message)
         } finally{
             setIsLoading(false)
         }
@@ -71,14 +73,21 @@ function SignupForm() {
                     onChange={(e) => setPassword(e.target.value)} 
                 />
 
+                {errors && errors.length > 0 &&
+                    <div className='text-white bg-red-600'>
+                        {
+                            errors.map((error) => (
+                                <p className='text-red-50'>{error}</p>
+                            ) )
+                        }
+                    </div>
+                }
+
                 <Button type='submit' isLoading={isLoading}>
                     Create Account
                 </Button>
             </form>
 
-            {/* {error && 
-                <p className='text-red-50'>{error}</p>
-            } */}
         </div>
     )
 }

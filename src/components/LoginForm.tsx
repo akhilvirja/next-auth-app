@@ -12,7 +12,6 @@ function LoginForm() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [isLoading, setIsLoading] = useState(false)
-    const [error, setError] = useState("")
 
     const handleSubmit = async (e:  React.FormEvent<HTMLFormElement>) =>{
         e.preventDefault()
@@ -20,7 +19,7 @@ function LoginForm() {
 
         if(!email || !password){
             setIsLoading(false)
-            setError("All fields are required")
+            toast.error("All fields are required")
             return
         }
 
@@ -28,10 +27,11 @@ function LoginForm() {
             const result = await signIn("credentials", {
                 email,
                 password,
+                redirect: false,
             })
 
             if(result?.error){
-                setError(result.error)
+                toast.error(result.error)
                 setIsLoading(false)
             }
             else if(result?.ok){
@@ -73,10 +73,6 @@ function LoginForm() {
                     Login
                 </Button>
             </form>
-
-            {error && 
-                <p className='text-red-50'>{error}</p>
-            }
         </div>
     )
 }

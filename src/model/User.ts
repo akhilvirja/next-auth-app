@@ -4,8 +4,8 @@ export interface User extends Document{
     email: string;
     phone_no: string;
     password: string;
-    verifyCode: string;
-    verifyCodeExpiry: Date
+    verifyCode: string | undefined;
+    verifyCodeExpiry: Date | undefined;
 }
 
 const UserSchema: Schema<User> = new Schema({

@@ -15,8 +15,7 @@ export async function POST(req: NextRequest){
         const result = signupSchema.safeParse(data)
 
         if(!result.success){
-            const errors = result.error.flatten()
-            console.log(errors)
+            const errors = result.error.issues.map((issue) => issue.message)
             return NextResponse.json({
                 success: false,
                 message: errors

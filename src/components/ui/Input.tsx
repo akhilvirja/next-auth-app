@@ -12,7 +12,7 @@ interface inputProps{
 const Input = ({
   label,
   type="text",
-  icon,
+  icon = (<></>),
   placeholder,
   value,
   onChange
