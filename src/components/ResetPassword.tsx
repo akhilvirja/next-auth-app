@@ -23,7 +23,7 @@ function ResetPassword({email}: {email: string}) {
         setIsLoading(true)
 
         try {
-            const response = await axios.post("http://localhost:3000/api/reset-password", {email, password})
+            const response = await axios.post("https://next-auth-app-six-alpha.vercel.app/api/reset-password", {email, password})
 
             if(response.data.success){
                 toast.success("Password reset successfully")

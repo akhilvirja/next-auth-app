@@ -20,7 +20,7 @@ function ForgetPassword({changePage, email, setEmail} : forgetPasswordProps) {
         setIsLoading(true)
 
         try {
-            const response = await axios.post("http://localhost:3000/api/forget-password", {email: emailInput})
+            const response = await axios.post("https://next-auth-app-six-alpha.vercel.app/api/forget-password", {email: emailInput})
             if(response.data.success){
                 toast.success(response.data.message)
                 setEmail(emailInput) 

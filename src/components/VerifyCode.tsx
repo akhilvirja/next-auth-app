@@ -20,7 +20,7 @@ function VerifyCode({changePage, email} : verifyCodeProps) {
         setIsLoading(true)
 
         try {
-            const response = await axios.post("http://localhost:3000/api/verify-code", {email, verifyCode})
+            const response = await axios.post("https://next-auth-app-six-alpha.vercel.app/api/verify-code", {email, verifyCode})
             if(response.data.success){
                 toast.success(response.data.message)
                 changePage("reset_password")

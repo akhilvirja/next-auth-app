@@ -28,7 +28,7 @@ function SignupForm() {
         }
 
         try {
-            const response = await axios.post("http://localhost:3000/api/signup", {email: email, phone_no:phoneNo, password})
+            const response = await axios.post("https://next-auth-app-six-alpha.vercel.app/api/signup", {email: email, phone_no:phoneNo, password})
 
             toast.success(response.data.message)
             setEmail("")
