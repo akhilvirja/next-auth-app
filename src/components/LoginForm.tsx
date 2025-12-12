@@ -82,6 +82,12 @@ function LoginForm() {
                     <p>- or -</p>
                 </div>
 
+                <div className=' flex justify-between my-3 px-25'>
+                    <img width="24" height="24" src="https://img.icons8.com/color/48/google-logo.png" alt="google-logo"/>
+                    <img width="24" height="24" src="https://img.icons8.com/fluency/48/facebook.png" alt="facebook"/>
+                    <img width="25" height="25" src="https://img.icons8.com/ios-filled/50/mac-os.png" alt="mac-os"/>
+                </div>
+
                 <div className='flex gap-2 justify-center mt-3 text-sm'>
                     <p className='text-[#757575]'>Dont't have an account?</p><Link href='/signup' className='text-[#C8A882] font-semibold hover:underline'>Sign up</Link>
                 </div>
