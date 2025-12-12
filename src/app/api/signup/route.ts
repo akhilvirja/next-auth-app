@@ -21,7 +21,7 @@ export async function POST(req: NextRequest){
                 message: errors
             }, {status: 400})
         }
-        console.log(result)
+        
         const existingUserByEmail = await UserModel.findOne({email: result.data.email})
 
         if(existingUserByEmail){

@@ -39,7 +39,11 @@ export async function POST(req:NextRequest) {
             }, {status: 400})
         }
 
-        if(verifyCode != user.verifyCode){
+        console.log(typeof(user.verifyCode))
+        console.log(typeof(verifyCode))
+        console.log(verifyCode !== user.verifyCode)
+
+        if(Number(verifyCode) != Number(user.verifyCode)){
             return NextResponse.json({
                 success: false,
                 message: "Invalid Code"

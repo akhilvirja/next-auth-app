@@ -9,11 +9,11 @@ function page() {
     const [email, setEmail] = useState("")
     
     if(currentPage === "reset_password"){
-        return(<ResetPassword />)
+        return(<ResetPassword email={email} />)
     }else if(currentPage === "verify_code"){
-        return (<VerifyCode changePage={setCurrentPage} />)
+        return (<VerifyCode changePage={setCurrentPage} email={email} />)
     }else{
-        return(<ForgetPassword changePage={setCurrentPage} />)
+        return(<ForgetPassword changePage={setCurrentPage} email={email} setEmail={setEmail} />)
     }
 }
 

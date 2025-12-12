@@ -30,7 +30,7 @@ const Input = ({
         <input 
           type={type} 
           placeholder={placeholder} 
-          className='p-4 pl-7 outline-none rounded-full text-[#616161]'
+          className='w-full p-4 pl-7 outline-none rounded-full text-[#616161]'
           value={value}
           onChange={onChange} 
         />
