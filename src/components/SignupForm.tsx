@@ -78,14 +78,14 @@ function SignupForm() {
                     <div className='text-white bg-red-600 m-1 rounded-2xl p-3'>
                         {
                             errors.map((error, idx) => (
-                                <p className='text-red-50' key={idx}>{error}</p>
+                                <p  key={idx}>{error}</p>
                             ) )
                         }
                     </div>
                     :
                     <div className='text-white bg-red-600 m-1 rounded-2xl p-3'>
                         {
-                            <p className='text-red-50'>{errors}</p>
+                            <p>{errors}</p>
                         }
                     </div>
                 }
