@@ -4,9 +4,9 @@ import Input from './ui/Input'
 import Button from './ui/Button'
 import { LockKeyhole, Mail, Phone } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import axios from "axios"
 import toast from 'react-hot-toast'
 import Link from 'next/link'
+import { axiosInstance } from '@/lib/axios'
 
 function SignupForm() {
     const router = useRouter()
@@ -28,7 +28,7 @@ function SignupForm() {
         }
 
         try {
-            const response = await axios.post("https://next-auth-app-six-alpha.vercel.app/api/signup", {email: email, phone_no:phoneNo, password})
+            const response = await axiosInstance.post("/api/signup", {email: email, phone_no:phoneNo, password})
 
             toast.success(response.data.message)
             setEmail("")

@@ -2,9 +2,9 @@
 import React, { useState } from 'react'
 import Input from './ui/Input'
 import Button from './ui/Button';
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import { KeyRound } from 'lucide-react';
+import { axiosInstance } from '@/lib/axios';
 
 interface verifyCodeProps{
     changePage: React.Dispatch<React.SetStateAction<"forget_password" | "reset_password" | "verify_code">>;
@@ -20,7 +20,7 @@ function VerifyCode({changePage, email} : verifyCodeProps) {
         setIsLoading(true)
 
         try {
-            const response = await axios.post("https://next-auth-app-six-alpha.vercel.app/api/verify-code", {email, verifyCode})
+            const response = await axiosInstance.post("/api/verify-code", {email, verifyCode})
             if(response.data.success){
                 toast.success(response.data.message)
                 changePage("reset_password")

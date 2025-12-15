@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import Input from './ui/Input'
 import Button from './ui/Button';
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import { Mail } from 'lucide-react';
+import { axiosInstance } from '@/lib/axios';
 
 interface forgetPasswordProps{
     changePage: React.Dispatch<React.SetStateAction<"forget_password" | "reset_password" | "verify_code">>;
@@ -20,7 +20,7 @@ function ForgetPassword({changePage, email, setEmail} : forgetPasswordProps) {
         setIsLoading(true)
 
         try {
-            const response = await axios.post("https://next-auth-app-six-alpha.vercel.app/api/forget-password", {email: emailInput})
+            const response = await axiosInstance.post("/api/forget-password", {email: emailInput})
             if(response.data.success){
                 toast.success(response.data.message)
                 setEmail(emailInput) 

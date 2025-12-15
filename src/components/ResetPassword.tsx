@@ -4,7 +4,7 @@ import { LockIcon, LockKeyhole, UserLock } from 'lucide-react'
 import Button from './ui/Button'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
-import axios from 'axios'
+import { axiosInstance } from '@/lib/axios'
 
 function ResetPassword({email}: {email: string}) {
     const router = useRouter()
@@ -23,7 +23,7 @@ function ResetPassword({email}: {email: string}) {
         setIsLoading(true)
 
         try {
-            const response = await axios.post("https://next-auth-app-six-alpha.vercel.app/api/reset-password", {email, password})
+            const response = await axiosInstance.post("/api/reset-password", {email, password})
 
             if(response.data.success){
                 toast.success("Password reset successfully")
